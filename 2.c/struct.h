@@ -3,7 +3,8 @@
 #include <string.h>
 #include <time.h>
 #include <math.h>
-
+#include <stdbool.h>
+#include "data.h"
 
 #define MAX_USERS       100
 #define MAX_DRIVERS     100
@@ -13,6 +14,7 @@
 #define MAX_PASS        30
 #define MAX_VEHICLE     50
 #define MAX_PLATE       20
+#define DATA_FILE       "ride_data.dat"
 
 
 typedef enum { PASSENGER = 1, DRIVER, ADMIN } UserRole;
@@ -61,3 +63,14 @@ typedef struct {
     int    userRating;   /* 1-5, 0 = not rated */
     int    driverRating;
 } Booking;
+
+
+User    users[MAX_USERS];
+Driver  drivers[MAX_DRIVERS];
+Booking bookings[MAX_BOOKINGS];
+int     userCount    = 0;
+int     driverCount  = 0;
+int     bookingCount = 0;
+int     loggedInUser = -1;   /* index into users[]  */
+int     loggedInDriver = -1; /* index into drivers[] */
+int     isAdmin      = 0;
